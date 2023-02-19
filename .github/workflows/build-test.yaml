@@ -1,12 +1,17 @@
-name: "Build docker image"
+name: "Test docker image"
 
 on:
   push:
-    tags:
-      - v[0-9]+.[0-9]+.[0-9]+
+    branches:
+      - "feature/**"
+      - "fix/**"
+      - "main"
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build-deploy:
+  build-test:
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout
@@ -33,12 +38,4 @@ jobs:
             --build-arg COMMIT_HASH=$COMMIT_HASH \
             --build-arg BUILD_DATE=${DATETIME_NOW} \
             --build-arg BUILD_TAG=${BUILD_TAG} .
-
-      - name: Push to hub.docker.com
-        env:
-          BUILD_TAG: ${{ github.ref_name }}
-        run: |
-          docker tag jayamorin/hello-world:latest jayamorin/hello-world:$BUILD_TAG
-          docker push jayamorin/hello-world:latest
-          docker push jayamorin/hello-world:$BUILD_TAG
-          docker inspect jayamorin/hello-world:$BUILD_TAG
+          docker inspect jayamorin/hello-world:latest
