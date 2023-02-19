@@ -19,12 +19,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
 
       - name: Get current timedate
-        id: date
-        run: echo "{date}={$(date -u +'%Y-%m-%dT%H:%M:%SZ')}" >> $GITHUB_STATE
+        run: echo "NOW=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
 
       - name: Pull latest image and build
         env:
-          DATETIME_NOW: ${{ env.date }}
+          DATETIME_NOW: ${{ env.NOW }}
           COMMIT_HASH: ${{ github.sha }}
           BUILD_TAG: ${{ github.ref_name }}
         run: |
