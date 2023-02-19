@@ -28,7 +28,7 @@ jobs:
           COMMIT_HASH: ${{ github.sha }}
           BUILD_TAG: ${{ github.ref_name }}
         run: |
-          cd services/hello-world
+          cd src/hello-world
           docker pull jayamorin/hello-world:latest
           docker build -t jayamorin/hello-world:latest \
             --build-arg COMMIT_HASH=$COMMIT_HASH \
