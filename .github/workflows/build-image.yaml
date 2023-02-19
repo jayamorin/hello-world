@@ -39,7 +39,7 @@ jobs:
         env:
           BUILD_TAG: ${{ github.ref_name }}
         run: |
-          docker tag jayamorin/hello-world:latest jayamorin/hello-world:latest:$BUILD_TAG
+          docker tag jayamorin/hello-world:latest jayamorin/hello-world:$BUILD_TAG
           docker push jayamorin/hello-world:latest
           docker push jayamorin/hello-world:$BUILD_TAG
           docker inspect jayamorin/hello-world:$BUILD_TAG
