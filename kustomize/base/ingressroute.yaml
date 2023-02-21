@@ -1,0 +1,17 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: hello-world
+  labels:
+    app.kubernetes.io/component: application
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: Host(`hello-world.jayamorin.com`)
+      services:
+        - kind: Service
+          name: hello-world
+          port: 5000
