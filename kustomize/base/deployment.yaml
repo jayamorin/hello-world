@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: jayamorin/hello-world:v1.0.2
+          image: jayamorin/hello-world:v1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
