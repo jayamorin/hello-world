@@ -9,6 +9,7 @@ spec:
     spec:
       containers:
         - name: hello-world
+          image: jayamorin/hello-world:v1.0.3
           readinessProbe:
             initialDelaySeconds: 60
             periodSeconds: 10
